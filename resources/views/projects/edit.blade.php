@@ -17,7 +17,19 @@
 						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 						<a href="/projects" class="btn btn-danger pull-right">Cancel</a>
 					{!! Form::close() !!}							
+
+					@if(count($errors)>0)
+						<div class="alert alert-danger">
+							<ul>
+								@foreach($errors->all() as $err)
+									<li>{{$err}}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 					</div>
+
+
 					
 				</div>				
 			</div>

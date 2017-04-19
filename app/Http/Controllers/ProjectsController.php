@@ -23,8 +23,11 @@ class ProjectsController extends Controller
 
     public function update(Project $project) 
     {
-    	$req = request()->all();    	
-    	$project->update($req);
+    	$this->validate(request(), [
+            'name'    => 'required|min:4|max:200',
+            'user_id' => 'required|exists:users,id'
+        ]);
+    	$project->update(request()->all());
     	return redirect(route('projects_index'));
     }
 
