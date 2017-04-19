@@ -8,7 +8,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4>Projects</h4>							
-						<a href="#" class="btn btn-xs btn-success pull-right">Create New Project</a>
+						<a href="{{route('project_create')}}" class="btn btn-xs btn-success pull-right">Create New Project</a>
 				</div>
 
 				<div class="panel-body">

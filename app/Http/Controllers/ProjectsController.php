@@ -20,6 +20,24 @@ class ProjectsController extends Controller
     	return view('projects.index');
     }
 
+    public function create() 
+    {
+        $users = User::all();   
+        return view('projects.create',compact('users'));
+    }
+
+    public function store(Request $req) 
+    {
+        $this->validate($req, [
+            'name'    => 'required|min:4|max:200',
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        Project::create($req->all());
+        return redirect(route('projects_index'));
+
+    }
+
     public function edit(Project $project) 
     {
     	$users = User::all();    	
