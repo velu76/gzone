@@ -32,8 +32,8 @@ class ProjectsController extends Controller
             'name'    => 'required|min:4|max:200',
             'user_id' => 'required|exists:users,id'
         ]);                     
-
-        $project = Project::create(array('name'=> $req['name']));
+        dd($req['active_till']);
+        $project = Project::create(array('name'=> $req['name'], 'active_from' => $req['active_from'], 'active_till' => $req['active_till']));
         $project->owner()->attach($req['user_id']);
         return redirect(route('projects_index'));
 
