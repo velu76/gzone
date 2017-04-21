@@ -11,8 +11,8 @@
 				<div class="panel-body">
 					{{Form::open(['url' => route('project_store')])}}
 					{{Form::bstext('name')}}
-					{{Form::bsselect('Owner', 'user_id', $users->pluck('name','id'),'')}}
-					{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+					{{Form::bsselect('Owner', 'user_id', $users->pluck('name','id'),'')}}									
+            		{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
 					<a href="/projects" class="btn btn-danger pull-right">Cancel</a>
 					@if(count($errors)>0)
 						<div class="alert alert-danger">
@@ -23,8 +23,25 @@
 							</ul>
 						</div>
 					@endif
+					{{Form::close()}}		
+
+					<div class="input-append date form_datetime">
+					    <input size="56" type="text" value="" readonly>
+					    <span class="add-on"><i class="icon-th"></i></span>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	@push('scripts')
+		 <script type="text/javascript">
+			$(".form_datetime").datetimepicker({
+        format: "dd MM yyyy - hh:ii",
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left"
+    });       
+        </script>
+	@endpush
 @endsection

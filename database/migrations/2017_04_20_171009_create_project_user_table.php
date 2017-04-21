@@ -17,8 +17,8 @@ class CreateProjectUserTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('user_id');            
-            $table->dateTime('active_from')->default(Carbon\Carbon::now());
-            $table->dateTime('active_till')->default(Carbon\Carbon::now());            
+            $table->dateTime('active_from')->useCurrent=true;
+            $table->dateTime('active_till')->useCurrent=true;            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
 

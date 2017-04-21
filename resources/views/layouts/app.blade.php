@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
+<html lang="{{ config('app.locale') }}" >
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">   
+    <link href="css/dataTables.bootstrap.min.css">   
+    <link href="css/bootstrap-datetimepicker.min.css">
 
     <!-- Scripts -->
     <script>
@@ -84,10 +85,10 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts -->    
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.bootstrap.min.js"></script>
+    <script src="{{url('js/bootstrap-datetimepicker.min.js')}}"></script>            
+
     @stack('scripts')
 </body>
 </html>
