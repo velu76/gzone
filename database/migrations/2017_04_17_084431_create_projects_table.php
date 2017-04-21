@@ -16,8 +16,8 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',200);            
-            $table->dateTime('active_from');
-            $table->dateTime('active_till');            
+            $table->timestamp('active_from')->default(Carbon\Carbon::now());
+            $table->timestamp('active_till')->default(Carbon\Carbon::now());;            
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
+use Project;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
+    public function projects() 
+    {
+      return $this->belongsToMany(Project::class); 
+    }
 
     /**
      * The attributes that should be hidden for arrays.

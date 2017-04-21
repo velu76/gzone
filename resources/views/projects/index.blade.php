@@ -17,8 +17,8 @@
 							<tr>
 								<th>Name</th>
 								<th>Owner</th>
-								<th>Created On</th>
-								<th>Updated On</th>
+								<th>Active From</th>
+								<th>Active Till</th>
 								<th>Action</th>
 							</tr>
 						</thead>						
@@ -40,8 +40,8 @@
 			[
 				{data:'name', name: 'name'},
 				{data:'user_id', name: 'user_id'},
-				{data:'created_at', name: 'created_at'},
-				{data:'updated_at', name: 'updated_at'},
+				{data:'active_from', name: 'active_from'},
+				{data:'active_till', name: 'active_till'},
 				{data:'action', name: 'action', orderable: false, searchable: false},								
 			]
 		});

@@ -31,9 +31,10 @@ class ProjectsController extends Controller
         $this->validate($req, [
             'name'    => 'required|min:4|max:200',
             'user_id' => 'required|exists:users,id'
-        ]);
+        ]);                     
 
-        Project::create($req->all());
+        $project = Project::create(array('name'=> $req['name']));
+        $project->owner()->attach($req['user_id']);
         return redirect(route('projects_index'));
 
     }
@@ -56,16 +57,18 @@ class ProjectsController extends Controller
 
     public function pData()     	
     {    	
-    	$projects = Project::select(['id','name','user_id','created_at','updated_at']);
+    	$projects = Project::select(['id','name','active_from','active_till']);
+
     	return Datatables::of($projects)
-    				->editColumn('user_id', function($project){
-    					return title_case($project->owner->name);	
+    				->editColumn('user_id', function($project){                        
+    					return title_case($project->users()->pluck('name'));	
     				})
-    				->editColumn('created_at', function($project){
-    					return $project->created_at->toDayDateTimeString();
+    				->editColumn('active_from', function($project){                        
+                        dd($project->active_from->toDayDateTimeString());
+    					return $project->active_from->toDayDateTimeString();
     				})
-    				->editColumn('updated_at', function($project){
-    					return $project->created_at->toDayDateTimeString();
+    				->editColumn('active_till', function($project){
+    					return $project->active_till->toDayDateTimeString();
     				})	
     				->addColumn('action', function($project){
     					$btns = "<a href='". route('project_edit', $project->id) ."' class='btn btn-xs btn-primary'>Edit</a>";
