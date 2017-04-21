@@ -57,18 +57,24 @@ class ProjectsController extends Controller
 
     public function pData()     	
     {    	
-    	$projects = Project::select(['id','name','active_from','active_till']);
+    	$projects = Project::select(['id', 'name', 'active_from', 'active_till']);
 
     	return Datatables::of($projects)
     				->editColumn('user_id', function($project){                        
-    					return title_case($project->users()->pluck('name'));	
+                        $users =  $project->users()->pluck('name');
+                        $b_list= "";
+                        foreach($users as $user) {
+                            $b_list .= title_case($user). ", ";
+                        }
+                        $b_list = rtrim($b_list, ", ");
+                        return $b_list;	
     				})
     				->editColumn('active_from', function($project){                        
-                        dd($project->active_from->toDayDateTimeString());
-    					return $project->active_from->toDayDateTimeString();
+                        // dd($project->active_from->toDayDateTimeString());
+    					return $project->active_from;
     				})
     				->editColumn('active_till', function($project){
-    					return $project->active_till->toDayDateTimeString();
+    					return $project->active_till;
     				})	
     				->addColumn('action', function($project){
     					$btns = "<a href='". route('project_edit', $project->id) ."' class='btn btn-xs btn-primary'>Edit</a>";
