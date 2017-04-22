@@ -62,6 +62,12 @@ class ProjectsController extends Controller
     	return redirect(route('projects_index'));
     }
 
+    public function destroy(Project $project) 
+    {
+        $project->delete();
+        return redirect(route('projects_index')); 
+    }
+
     public function pData()     	
     {    	
     	$projects = Project::select(['id', 'name', 'active_from', 'active_till', 'created_at']);
@@ -85,7 +91,7 @@ class ProjectsController extends Controller
     				})	
     				->addColumn('action', function($project){
     					$btns = "<a href='". route('project_edit', $project->id) ."' class='btn btn-xs btn-primary'>Edit</a>";
-    					$btns .=  "<a href='#' class='btn btn-xs btn-danger'>Delete</a>";
+    					$btns .=  "<a href='". route('project_delete', $project->id) . "' class='btn btn-xs btn-danger'>Delete</a>";
     					return $btns;    					
     				})
     				->make(true);
