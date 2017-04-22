@@ -13,14 +13,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="css/dataTables.bootstrap.min.css">   
-    <link href="css/bootstrap-datetimepicker.min.css">
-
-    <!-- Scripts -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="css/bootstrap-datetimepicker.css">
+    
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/all.js')}}"></script>
+
 </head>
 <body>
     <div id="app">
@@ -86,9 +91,8 @@
     </div>
 
     <!-- Scripts -->    
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{url('js/bootstrap-datetimepicker.min.js')}}"></script>            
-
+   
+       
     @stack('scripts')
 </body>
 </html>

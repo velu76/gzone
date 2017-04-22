@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\User;
 use Yajra\Datatables\Datatables;
+use Carbon\Carbon;
 
 class ProjectsController extends Controller
 {
@@ -27,14 +28,19 @@ class ProjectsController extends Controller
     }
 
     public function store(Request $req) 
-    {
+    {        
         $this->validate($req, [
             'name'    => 'required|min:4|max:200',
             'user_id' => 'required|exists:users,id'
-        ]);                     
-        dd($req['active_till']);
-        $project = Project::create(array('name'=> $req['name'], 'active_from' => $req['active_from'], 'active_till' => $req['active_till']));
-        $project->owner()->attach($req['user_id']);
+        ]);
+
+        $vfrom = Carbon::createFromFormat("m/d/Y h:i a",$req['active_from']);
+        $vtill = Carbon::createFromFormat('m/d/Y h:i a',$req['active_till']);        
+        
+
+        $pdata = array('name'=> $req['name'], 'active_from' => $vfrom, 'active_till' => $vtill, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now() );
+        $project = Project::create($pdata);        
+        $project->users()->attach($req['user_id'], ['active_from' => $vfrom, 'active_till' => $vtill]);
         return redirect(route('projects_index'));
 
     }
@@ -51,13 +57,14 @@ class ProjectsController extends Controller
             'name'    => 'required|min:4|max:200',
             'user_id' => 'required|exists:users,id'
         ]);
+
     	$project->update(request()->all());
     	return redirect(route('projects_index'));
     }
 
     public function pData()     	
     {    	
-    	$projects = Project::select(['id', 'name', 'active_from', 'active_till']);
+    	$projects = Project::select(['id', 'name', 'active_from', 'active_till', 'created_at']);
 
     	return Datatables::of($projects)
     				->editColumn('user_id', function($project){                        
