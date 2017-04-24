@@ -21,7 +21,12 @@ class UsersController extends Controller
     // Ajax call handler for Users table data
     public function uData() 
     {
-    	// $users = User::select(['id', ''])
+    	$users = User::select(['id', 'name', 'email']);
+
+        return DataTables::of($users)
+                    ->addColumn('permission', function($user) {
+                       return $user->           
+                    })
     	
     }
 

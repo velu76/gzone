@@ -13,18 +13,18 @@
 					{{Form::bstext('name')}}
 					{{Form::bsselect('Owner', 'user_id', $users->pluck('name','id'),'')}}									
 					<hr>	
-					<div class='input-group date' id='active_from'>
+					<div class='input-group date'>
 						<label for="active_from">Active From</label>
 					</div>
-					<div class='input-group date' id='active_from'>
-						
+
+					<div class='input-group date'  id='active_from'>						
 	                    <input type='text' class="form-control" name="active_from" />
 	                    <span class="input-group-addon">
 	                        <span class="glyphicon glyphicon-calendar"></span>
 	                    </span>
                 	</div>
 					<hr>					
-					<div class='input-group date' id='active_till'>
+					<div class='input-group date'>
                 		<label for="active_till">Active Till</label>
 	                </div>
                 	<div class='input-group date' id='active_till'>                		
