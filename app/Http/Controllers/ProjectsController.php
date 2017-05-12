@@ -51,14 +51,20 @@ class ProjectsController extends Controller
     	return view('projects.edit', compact('project','users'));
     }
 
-    public function update(Project $project) 
+    public function update(Project $project, Request $req) 
     {
-    	$this->validate(request(), [
+    	$this->validate($req, [
             'name'    => 'required|min:4|max:200',
             'user_id' => 'required|exists:users,id'
         ]);
 
-    	$project->update(request()->all());
+        $pdata = array('name'=> $req['name'], 'updated_at' => Carbon::now() );
+    	$project->update($pdata);
+        $user = $project->users()->first();        
+        $project->users()->detach($user['id']);        
+        
+        $project->users()->attach($req['user_id'], ['active_from' => Carbon::now(), 'active_till' => Carbon::now()]);
+
     	return redirect(route('projects_index'));
     }
 
