@@ -34,22 +34,29 @@ class UsersController extends Controller
     public function store(Request $req) 
     {        
         $this->validate($req, [
-            'name'    => 'required|min:4|max:200',
-            'email'   => 'required|email|confirmed',            
-            'role_id' => 'required|exists:roles_id'
+            'name'    => 'required|string|min:4|max:100',
+            'email'   => 'required|string|email|max:255|unique:users|confirmed',            
+            'role_id' => 'required|exists:roles,id'
         ]);
 
-        $vfrom = Carbon::createFromFormat("m/d/Y h:i a",$req['active_from']);
-        $vtill = Carbon::createFromFormat('m/d/Y h:i a',$req['active_till']);        
+        // $vfrom = Carbon::createFromFormat("m/d/Y h:i a",$req['active_from']);
+        // $vtill = Carbon::createFromFormat('m/d/Y h:i a',$req['active_till']);        
         
         $this->user_password="";
         $this->user_password="TestPassword@2017";
+        $user = User::create([
+            'name'      => $req['name'],
+            'email'     => $req['email'],
+            'password'  => bcrypt($this->user_password)
+        ]);       
 
-        $user_data = array('name'=> $req['name'], 'password' => $this->user_password );
-        $user_type_data = array('name'=> $req['name'], 'active_from' => $vfrom, 'active_till' => $vtill, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now() );
-        $project = Project::create($pdata);        
-        $project->users()->attach($req['user_id'], ['active_from' => $vfrom, 'active_till' => $vtill]);
-        return redirect(route('projects_index'));
+        // dd($user->id);
+        // Update relationtables
+        $user->updateRelation($req['role_id'],$user->id);    
+        
+        // $project = Project::create($pdata);        
+        // $project->users()->attach($req['user_id'], ['active_from' => $vfrom, 'active_till' => $vtill]);
+        return redirect(route('users_index'));
 
     }
 
