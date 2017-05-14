@@ -7,6 +7,7 @@
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h4>Users and Permissions</h4>
+						<a href="{{route('user_create')}}" class="btn btn-xs btn-success pull-right">Create New User</a>
 					</div>
 
 					<div class="panel-body">

@@ -19,6 +19,7 @@ Route::get('/home', 'HomeController@index');
 
 // Users Routes
 Route::get('/users', 'UsersController@index')->name('users_index');
+Route::get('/users/create', 'UsersController@create')->name('user_create');
 
 // Ajax pulls for the Users Table
 Route::get('udata', 'UsersController@uData');

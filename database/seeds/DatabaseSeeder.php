@@ -184,9 +184,21 @@ class DatabaseSeeder extends Seeder
 
         // Associate Role to User
         DB::table('role_user')->insert([
+            [
             'user_id' => 1,
             'role_id' => 1,
             'user_type' => 'App\User'
+            ],
+            [
+            'user_id' => 2,
+            'role_id' => 1,
+            'user_type' => 'App\User'
+            ],
+            [
+            'user_id' => 3,
+            'role_id' => 1,
+            'user_type' => 'App\User'
+            ],
         ]);
     }
 }

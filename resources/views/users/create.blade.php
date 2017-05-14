@@ -5,13 +5,28 @@
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					Create a new project
+					Create a new user
 				</div>
 
 				<div class="panel-body">
-					{{Form::open(['url' => route('project_store')])}}
-					{{Form::bstext('name')}}
-					{{Form::bsselect('Manager', 'user_id', $users->pluck('name','id'),'')}}									
+					{{Form::open(['url' => route('user_store')])}}
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" aria-describedby="name" name="name" required>	    
+					</div>		
+										
+					{{Form::bsselect('User Role', 'role_id', $roles->pluck('display_name','id'),'')}}			
+
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="text" class="form-control" id="email" aria-describedby="email" name="email" required>	    						
+					</div>		
+
+					<div class="form-group">
+						<label for="confrimation">Email Confirmation</label>
+						<input type="text" class="form-control" id="confrimation" aria-describedby="confrimation" name="confrimation" required>	    
+					</div>		
+					
 					<hr>	
 					<div class='input-group date'>
 						<label for="active_from">Active From</label>
