@@ -9,23 +9,17 @@
 				</div>
 
 				<div class="panel-body">
-					{{Form::open(['url' => route('user_store')])}}
-					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" class="form-control" id="name" aria-describedby="name" name="name" required>	    
-					</div>		
+					{{ Form::open(['url' => route('user_store')]) }}
+					
+					{{ Form::bstext('name') }}
 										
-					{{Form::bsselect('User Role', 'role_id', $roles->pluck('display_name','id'),'')}}			
+					{{ Form::bsselect('User Role', 'role_id', $roles->pluck('display_name','id'),'') }}			
 
-					<div class="form-group">
-						<label for="email">Email</label>
-						<input type="text" class="form-control" id="email" aria-describedby="email" name="email" required>	    						
-					</div>		
+					{{ Form::checkbox('User Role', 'Admin', false)}}
 
-					<div class="form-group">
-						<label for="email-confirm">Email Confirmation</label>
-						<input type="text" class="form-control" id="email-confirm" aria-describedby="email-confirm" name="email_confirmation" required>	    
-					</div>		
+					{{ Form::bstext('email') }}
+
+					{{ Form::bstext('email_confirmation') }}
 					
 					<hr>	
 					
