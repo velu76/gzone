@@ -23,8 +23,8 @@
 					</div>		
 
 					<div class="form-group">
-						<label for="confrimation">Email Confirmation</label>
-						<input type="text" class="form-control" id="confrimation" aria-describedby="confrimation" name="confrimation" required>	    
+						<label for="email-confirm">Email Confirmation</label>
+						<input type="text" class="form-control" id="email-confirm" aria-describedby="email-confirm" name="email_confirmation" required>	    
 					</div>		
 					
 					<hr>	

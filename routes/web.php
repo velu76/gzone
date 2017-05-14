@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/users', 'UsersController@index')->name('users_index');
 Route::get('/users/create', 'UsersController@create')->name('user_create');
 
+Route::post('/users/create', 'UsersController@store')->name('user_store');
+
 // Ajax pulls for the Users Table
 Route::get('udata', 'UsersController@uData');
 

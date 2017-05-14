@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
+use Illuminate\Support\Facades\DB;
+use App\Role;
 use Project;
 
 class User extends Authenticatable
@@ -49,6 +51,34 @@ class User extends Authenticatable
             
         }
         return array_unique($roles);
+    }
+
+    public function updateRelation($role,$id){
+      $table = "";
+      switch($role){
+
+        // Admin
+        case 1:
+          $this->attachRole(Role::find(1));
+          break;
+
+        // Manager  
+        case 2:
+          $manager = array('manager_id' => $id);
+          DB::table('manager_user')->insert($manager);
+          $this->attachRole(Role::find(2));
+          break;
+
+        // Member  
+        case 3:
+          $member = array('member_id' => $id);
+          DB::table('member_user')->insert($member);
+          $this->attachRole(Role::find(3));
+          break;
+
+        default:
+          break;
+      }
     }
 
 
