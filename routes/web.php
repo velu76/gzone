@@ -20,8 +20,10 @@ Route::get('/home', 'HomeController@index');
 // Users Routes
 Route::get('/users', 'UsersController@index')->name('users_index');
 Route::get('/users/create', 'UsersController@create')->name('user_create');
+Route::get('/users/{user}', 'UsersController@edit')->name('user_edit');
 
 Route::post('/users/create', 'UsersController@store')->name('user_store');
+Route::post('/users/{user}/store', 'UsersController@update')->name('user_update');
 
 // Ajax pulls for the Users Table
 Route::get('udata', 'UsersController@uData');

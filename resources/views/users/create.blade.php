@@ -28,29 +28,9 @@
 					</div>		
 					
 					<hr>	
-					<div class='input-group date'>
-						<label for="active_from">Active From</label>
-					</div>
-
-					<div class='input-group date'  id='active_from'>						
-	                    <input type='text' class="form-control" name="active_from" />
-	                    <span class="input-group-addon">
-	                        <span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-                	</div>
-					<hr>					
-					<div class='input-group date'>
-                		<label for="active_till">Active Till</label>
-	                </div>
-                	<div class='input-group date' id='active_till'>                		
-	                    <input type='text' class="form-control" name="active_till" />
-	                    <span class="input-group-addon">
-	                        <span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-                	</div>
-					<hr>
+					
             		{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
-					<a href="/projects" class="btn btn-danger pull-right">Cancel</a>
+					<a href="/users" class="btn btn-danger pull-right">Cancel</a>
 					@if(count($errors)>0)
 						<div class="alert alert-danger">
 							<ul>

@@ -57,6 +57,21 @@ class UsersController extends Controller
         // $project = Project::create($pdata);        
         // $project->users()->attach($req['user_id'], ['active_from' => $vfrom, 'active_till' => $vtill]);
         return redirect(route('users_index'));
+    }
+
+    public function edit(User $user) 
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(User $user, Request $req) 
+    {
+        $this->validate($req,[
+            'name'    => 'required|string|min:4|max:100',
+            'email'   => 'required|string|email|max:255|unique:users|confirmed',            
+            'role_id' => 'required|exists:roles,id'
+        ]);
+
 
     }
 
@@ -65,15 +80,15 @@ class UsersController extends Controller
     {
     	$users = User::select(['id', 'name', 'email']);
 
-        return DataTables::of($users)
+        return DataTables::of($users)                
+                ->addColumn('action', function($user){
+                    $link = "<a href='". route('user_edit',$user->id)."' class='btn btn-xs btn-primary'>Edit</a>";                     
+                    return $link;
+                })                               
                 ->addColumn('permission', function($user){
                     return $user->getAllRoles();
                 })
-                ->addColumn('valid', function(){
-                    return "Today";
-                })
-                ->make(true);              
-    	
+                ->make(true);                  	
     }
 
 }

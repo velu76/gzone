@@ -14,10 +14,10 @@
 						<table class="table table-bordered" id="users-table">
 							<thead>
 								<tr>
+									<th>Action</th>							
 									<th>User Name</th>
 									<th>Email</th>
-									<th>Permissions</th>
-									<th>Account Valid Till</th>
+									<th>Permissions</th>										
 								</tr>
 							</thead>
 						</table>
@@ -35,10 +35,10 @@
 					ajax: "{!! url('udata') !!}",
 					columns: 
 					[
+						{data:'action', name:'action', orderable: false, searchable: false},
 						{data:'name', name:'name'},
 						{data:'email', name:'email'},
-						{data:'permission', name:'permission'},
-						{data:'valid', name:'valid'},
+						{data:'permission', name:'permission'},						
 					]
 				});
 			});
