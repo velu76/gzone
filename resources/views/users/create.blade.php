@@ -14,7 +14,7 @@
 					{{ Form::bstext('name') }}
 										
 					{!! Form::label('Role(s)') !!}										
-				 	{!! Form::select('roles[]',  $roles,  null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
+				 	{!! Form::select('role_id[]',  $roles,  null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
 
 					{{ Form::bstext('email') }}
 
