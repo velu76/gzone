@@ -54,7 +54,10 @@ class User extends Authenticatable
     }
 
     public function updateRelation($roles,$id){
-      $table = "";
+
+      // Reset existing role relations      
+      $this->removeRoles();
+      
       foreach($roles as $role) {
         switch($role)
         {
@@ -82,6 +85,14 @@ class User extends Authenticatable
         }  
       }
       
+    }
+
+    public function removeRoles() 
+    {
+      $roles = $this->roles;
+
+      if(sizeof($roles)>0)
+        $this->detachRoles($roles); 
     }
 
 

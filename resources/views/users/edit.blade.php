@@ -11,9 +11,16 @@
 					</div>	
 					<div class="panel-body">
 					{!! Form::open(['url' => route('user_update', $user->id)])	!!}
-						{{-- {{ Form::token() }}					 --}}			
+						{{-- {{ Form::token() }}					 --}}									
 						{{ Form::bstext('name', $user->name, []) }}
-						{{ Form::bsselect('Role', 'user_id', $user->getAllRoles())  }}				
+						{{ Form::bstext('email', $user->email, ['readOnly']) }}						
+						<p>User's current role(s):							
+							@foreach($user->roles->pluck('display_name') as $role)
+								{!! $role !!} |								
+							@endforeach	
+						</p>
+						{!! Form::label('Role(s)') !!}										
+				 		{!! Form::select('role_id[]',  $roles,  null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}		
 						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 						<a href="/users" class="btn btn-danger pull-right">Cancel</a>
 					{!! Form::close() !!}							

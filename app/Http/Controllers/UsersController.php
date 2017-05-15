@@ -50,8 +50,7 @@ class UsersController extends Controller
             'email'     => $req['email'],
             'password'  => bcrypt($this->user_password)
         ]);       
-
-        // dd($user->id);
+        
         // Update relationtables
         $user->updateRelation($req['role_id'],$user->id);    
         
@@ -62,18 +61,18 @@ class UsersController extends Controller
 
     public function edit(User $user) 
     {
-        return view('users.edit', compact('user'));
+        $roles = Role::pluck('display_name', 'id');
+        return view('users.edit', compact('user','roles'));
     }
 
     public function update(User $user, Request $req) 
     {
         $this->validate($req,[
-            'name'    => 'required|string|min:4|max:100',
-            'email'   => 'required|string|email|max:255|unique:users|confirmed',            
+            'name'    => 'required|string|min:4|max:100',            
             'role_id' => 'required|exists:roles,id'
-        ]);
-
-
+        ]);      
+        $user->updateRelation($req['role_id'],$user->id);
+        return redirect(route('users_index'));
     }
 
     // Ajax call handler for Users table data
