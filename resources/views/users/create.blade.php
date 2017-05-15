@@ -13,9 +13,8 @@
 					
 					{{ Form::bstext('name') }}
 										
-					{{ Form::bsselect('User Role', 'role_id', $roles->pluck('display_name','id'),'') }}			
-
-					{{ Form::checkbox('User Role', 'Admin', false)}}
+					{!! Form::label('Role(s)') !!}										
+				 	{!! Form::select('roles[]',  $roles,  null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
 
 					{{ Form::bstext('email') }}
 
