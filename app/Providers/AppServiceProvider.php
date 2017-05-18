@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Form::component('bstext', 'components.form.text', ['name', 'value'=>null, 'attributes'=>[]]);
-        Form::component('bsselect', 'components.form.select', ['label', 'name' , 'value' => [], 'selected'=> null]);
+        Form::component('bsselect', 'components.form.select', ['label', 'name' , 'value' => [], 'attributes'=>[], 'selected'=> null]);
         Form::component('bscheckbox', 'components.form.checkbox', ['name', 'value' => null, 'attributes'=>[] ]);
     }
 

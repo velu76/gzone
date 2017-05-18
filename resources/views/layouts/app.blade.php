@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="css/dataTables.bootstrap.min.css">   
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.min.css">
     <link href="css/bootstrap-datetimepicker.css">
     
     <script>
@@ -24,7 +25,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/all.js')}}"></script>
+    <script src="{{ asset('js/all.js')}}"></script>  
 
 </head>
 <body>
@@ -91,7 +92,7 @@
     </div>
 
     <!-- Scripts -->    
-   
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.jquery.min.js"></script>
        
     @stack('scripts')
 </body>

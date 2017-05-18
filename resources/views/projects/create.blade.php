@@ -11,7 +11,9 @@
 				<div class="panel-body">
 					{{Form::open(['url' => route('project_store')])}}
 					{{Form::bstext('name')}}
-					{{Form::bsselect('Manager', 'user_id', $users->pluck('name','id'),'')}}									
+					{{Form::bsselect('Manager','manager_id', $users->pluck('name','id'),['class' => 'chosen form-control', 'multiple' => true ])}}									
+					{{Form::bsselect('Member', 'member_id', $users->pluck('name','id'),['class' => 'chosen form-control', 'multiple' => true ])}}									
+					
 					<hr>	
 					<div class='input-group date'>
 						<label for="active_from">Active From</label>
@@ -58,7 +60,10 @@
 			 $(function () {
                 $('#active_from').datetimepicker();
                 $('#active_till').datetimepicker();
-            });       
+            });     
+
+
+            $(".chosen").chosen();  
         </script>
 	@endpush
 @endsection
