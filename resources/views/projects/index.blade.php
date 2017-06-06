@@ -16,7 +16,7 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Owner</th>
+								<th>Owner / Manager</th>
 								<th>Active From</th>
 								<th>Active Till</th>
 								<th>Action</th>

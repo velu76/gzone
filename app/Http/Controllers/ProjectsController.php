@@ -88,16 +88,18 @@ class ProjectsController extends Controller
                         $b_list = rtrim($b_list, ", ");
                         return $b_list;	
     				})
-    				->editColumn('active_from', function($project){                        
-                        // dd($project->active_from->toDayDateTimeString());
-    					return $project->active_from;
+    				->editColumn('active_from', function($project){                                                
+                        $d_date = $project->active_from;                                                
+    					return Carbon::createFromFormat('Y-m-d H:i:s', $d_date)->toDayDateTimeString();
     				})
     				->editColumn('active_till', function($project){
-    					return $project->active_till;
+    					$d_date = $project->active_till;
+                        return Carbon::createFromFormat('Y-m-d H:i:s', $d_date)->toDayDateTimeString();
     				})	
     				->addColumn('action', function($project){
     					$btns = "<a href='". route('project_edit', $project->id) ."' class='btn btn-xs btn-primary'>Edit</a>";
     					$btns .=  "<a href='". route('project_delete', $project->id) . "' class='btn btn-xs btn-danger'>Delete</a>";
+                        $btns .=  "<a href='". route('project_delete', $project->id) . "' class='btn btn-xs btn-warning'>Members</a>";
     					return $btns;    					
     				})
     				->make(true);
